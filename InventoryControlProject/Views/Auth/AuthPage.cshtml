@@ -1,0 +1,20 @@
+﻿@model InventoryControlProject.Models.AuthViewModel
+
+<form asp-action="AuthPage" asp-controller="Auth" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>       
+        <div>
+            <label asp-for="Login">Введите Логин</label><br />
+            <input type="text" asp-for="Login" />
+            <span asp-validation-for="Login" />
+        </div>
+        <div>
+            <label asp-for="Password">Введите пароль</label><br />
+            <input asp-for="Password" />
+            <span asp-validation-for="Password" />
+        </div>
+        <div>
+            <input type="submit" value="Войти" />
+        </div>
+    </div>
+</form>

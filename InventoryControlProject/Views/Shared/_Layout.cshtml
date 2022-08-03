@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html class="Layout_Html">
+    <head>
+        <meta charset="utf-8" />
+        <link href="~/css/LayoutStyleSheet.css" rel="stylesheet" type="text/css"/>
+    </head>
+<body class="Layout_body">
+    <header class="Layout_Header">
+        <div class="Layout_Head_Cont">
+            <div class="Layout_Head_Body">
+               <div class="Layout_Main_Logo">
+                    <a asp-action="AuthPage" asp-controller="Auth"><img class="Layout_LogoLink" src="~/img/Icons/NeoStock.png" alt=""/></a>
+               </div>
+               <div class="Layout_Head_ScrollContetn">
+                   
+               </div>
+                <div class="LayOut_MenuSide">
+                    <div class="dropdown">
+                        <button class="dropbtn">Меню</button>
+                        <div class="dropdown-content">
+                            <a asp-action="Index" asp-controller="Home">Главная</a>
+                            <a asp-action="AuthPage" asp-controller="Auth">Войти</a>
+                            <a asp-action="RegistrationPage" asp-controller="Registration">Регистрация</a>
+                            <a>О нас</a>
+                            <a>Контакты</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="Layout_RenderBody">
+        @RenderBody()
+    </main>
+    <footer class="Layout_Footer">
+
+    </footer>
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿@model InventoryControlProject.Models.RegistrationViewModel
+
+<form asp-action="RegistrationPage" asp-controller="Registration" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div>
+            <label asp-for="Email">Введите почту</label><br />
+            <input type="text" asp-for="Email" />
+            <span asp-validation-for="Email" />
+        </div>
+        <div>
+            <label asp-for="FullName">Введите ФИО</label><br />
+            <input type="text" asp-for="FullName" />
+            <span asp-validation-for="FullName" />
+        </div>
+        <div>
+            <label asp-for="Login">Введите Логин</label><br />
+            <input type="text" asp-for="Login" />
+            <span asp-validation-for="Login" />
+        </div>
+        <div>
+            <label asp-for="Password">Введите пароль</label><br />
+            <input asp-for="Password" />
+            <span asp-validation-for="Password" />
+        </div>
+        <div>
+            <input type="submit" value="Регистрация" />
+        </div>
+    </div>
+</form>
