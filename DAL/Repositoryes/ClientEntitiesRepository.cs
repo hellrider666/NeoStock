@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace DAL.Repositoryes
 {
@@ -41,7 +42,7 @@ namespace DAL.Repositoryes
 
         public ClientEntities GetByString(string value)
         {
-            throw new NotImplementedException();
+            return context.clientEntities.Include(x => x.ClientIden).FirstOrDefault(y => y.ClientIden.Login == value);
         }
 
         public void Update(ClientEntities clientEntities)

@@ -1,33 +1,58 @@
 ﻿<!DOCTYPE html>
 <html class="Layout_Html">
-    <head>
-        <meta charset="utf-8" />
-        <link href="~/css/LayoutStyleSheet.css" rel="stylesheet" type="text/css"/>
-    </head>
+<head>
+    <meta charset="utf-8" />
+    <link href="~/css/LayoutStyleSheet.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="~/js/LayoutScripts.js"></script>
+    <script type="text/javascript">
+       
+    </script>
+</head>
 <body class="Layout_body">
     <header class="Layout_Header">
         <div class="Layout_Head_Cont">
             <div class="Layout_Head_Body">
-               <div class="Layout_Main_Logo">
-                    <a asp-action="AuthPage" asp-controller="Auth"><img class="Layout_LogoLink" src="~/img/Icons/NeoStock.png" alt=""/></a>
-               </div>
-               <div class="Layout_Head_ScrollContetn">
-                   
-               </div>
+                <div class="Layout_Main_Logo">
+                    <a asp-action="AuthPage" asp-controller="Auth"><img class="Layout_LogoLink" src="~/img/Icons/NeoStock.png" alt="" /></a>
+                </div>
+                <div class="Layout_Head_ScrollContetn">
+                                      
+                </div>
                 <div class="LayOut_MenuSide">
-                    <div class="dropdown">
-                        <button class="dropbtn">Меню</button>
-                        <div class="dropdown-content">
-                            <a asp-action="Index" asp-controller="Home">Главная</a>
-                            <a asp-action="AuthPage" asp-controller="Auth">Войти</a>
-                            <a asp-action="RegistrationPage" asp-controller="Registration">Регистрация</a>
-                            <a>О нас</a>
-                            <a>Контакты</a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <script type="text/javascript">
+                            window.onload = function () {
+                                Layout_LoadProfile('@User.Identity.Name');
+                            };
+                        </script>
+                        <div class="dropdown">
+                            <button class="dropbtn">Профиль</button>
+                            <div class="dropdown-content">
+                                <img class="profile_photo" src="" />
+                                <p id="Layout_FullName">Ваше имя</p>
+                                <a class="Layout_ChangeProfile" onclick="Layout_ChangeProfile()">Редактировать профиль</a>
+                                <a class="Logout" asp-action="" asp-controller="">Выйти</a>
+                            </div>
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <div class="dropdown">
+                            <button class="dropbtn">Меню</button>
+                            <div class="dropdown-content">
+                                <a asp-action="Index" asp-controller="Home">Главная</a>
+                                <a asp-action="AuthPage" asp-controller="Auth">Войти</a>
+                                <a asp-action="RegistrationPage" asp-controller="Registration">Регистрация</a>
+                                <a>О нас</a>
+                                <a>Контакты</a>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </header>
     <main class="Layout_RenderBody">
         @RenderBody()
@@ -36,4 +61,5 @@
 
     </footer>
 </body>
+
 </html>
