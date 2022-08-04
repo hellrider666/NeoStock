@@ -31,6 +31,10 @@ namespace InventoryControlProject.Controllers
 
         public IActionResult Index()
         {
+            if(User.Identity.IsAuthenticated)
+            {
+                return Redirect("/WorkPages/StartWorkPages");
+            }
             return View();
         }
 

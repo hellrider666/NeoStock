@@ -50,5 +50,19 @@ namespace LOGIC.Services
                 ClaimsIdentity.DefaultRoleClaimType);         
            _httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
+
+        public bool Logout()
+        {
+            try
+            {
+                _httpContextAccessor.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                return true;
+            }
+            catch
+            {
+
+            }
+            return false;
+        }
     }
 }

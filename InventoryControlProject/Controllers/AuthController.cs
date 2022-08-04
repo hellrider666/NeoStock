@@ -36,9 +36,17 @@ namespace InventoryControlProject.Controllers
                 bool check = auth.Auth(_user);
                 if (check == true)
                 {
-                    return Redirect("/Home/Index");
+                    return Redirect("/WorkPages/StartWorkPages");
                 }
                 return View();                                
+        }
+        public RedirectResult Logout()
+        {
+            if(auth.Logout() == true)
+            {
+                return Redirect("/Home/Index");
+            }
+            return Redirect("/WorkPages/StartWorkPages");
         }
     }
 }

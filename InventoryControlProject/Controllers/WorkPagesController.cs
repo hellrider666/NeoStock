@@ -26,13 +26,14 @@ namespace InventoryControlProject.Controllers
             _mapper = mapper;
         }
         [HttpGet]
+        
         public JsonResult LoadProfileData(string login)
         {
             ProfileDTO user = clientServ.GetClient(login);
             var user_ = _mapper.Map<ProfileDTO, ProfileViewModel>(user);
             return Json(user_); 
         }
-        public IActionResult StartWorkPage()
+        public IActionResult StartWorkPages()
         {
             return View();
         }

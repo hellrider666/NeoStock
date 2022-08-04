@@ -12,5 +12,6 @@ namespace LOGIC.Interfaces
     {     
         public bool Auth(AuthDTO user);
         public void Authenticate(ClientIdentity user);
+        public bool Logout();
     }
 }
