@@ -33,21 +33,40 @@
     width: 100%;
     height: 100%;
 }
+.work-btn-group-1 {
+    width: 100%;
+    height: 100%;
+}
+
 .work-btn-group button {
-     font-size:1.2em;
-     margin-top:7.5%;
-     background-color:cornflowerblue; 
-     
-     border:0;
-     color: black; 
-     padding: 10px 24px;
-     cursor: pointer;
-     width: 100%; 
-     display: block; 
- }
-    .work-btn-group button:hover {
-        background-color: #ddd;
-    }
+    font-size: 1.2em;
+    margin-top: 7.5%;
+    background-color: cornflowerblue;
+    border: 0;
+    color: black;
+    padding: 10px 24px;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+}
+.work-btn-group button:hover {
+    background-color: #ddd;
+}
+.work-btn-group-1 button {
+    font-size: 1.2em;
+    margin-top: 7.5%;
+    background-color: cornflowerblue;
+    border: 0;
+    color: black;
+    padding: 10px 24px;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+}
+
+.work-btn-group-1 button:hover {
+    background-color: #ddd;
+}
 .work-tool-bar-2 {
     width: 100%;
     height: 70%;
