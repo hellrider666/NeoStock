@@ -1,0 +1,84 @@
+﻿.work-body {
+    width: 100%;
+    height: 100%;
+}
+
+.Work-main {
+    width: 100%;
+    height: 100%;
+}
+
+.work-cont {
+    width: 100%;
+    height: 100%;
+}
+
+.Work-content {
+    width: 100%;
+    height: 100%;
+}
+
+.work-tool-bar {
+    height: 100%;
+    width: 10%;
+    background-color: #f1f1f1;
+    float: left;
+}
+
+.work-tool-bar-1 {
+    width: 100%;
+    height: 30%;
+}
+.work-btn-group {
+    width: 100%;
+    height: 100%;
+}
+.work-btn-group button {
+     font-size:1.2em;
+     margin-top:7.5%;
+     background-color:cornflowerblue; 
+     
+     border:0;
+     color: black; 
+     padding: 10px 24px;
+     cursor: pointer;
+     width: 100%; 
+     display: block; 
+ }
+    .work-btn-group button:hover {
+        background-color: #ddd;
+    }
+.work-tool-bar-2 {
+    width: 100%;
+    height: 70%;
+    background-color:red;
+}
+
+.work-main-grid {
+    height: 100%;
+    width: 60%;
+    background-color: aquamarine;
+    float: left;
+}
+
+.work-partial-table {
+    height: 100%;
+    width: 100%;
+}
+
+.work-propetries-conent {
+    height: 100%;
+    width: 30%;
+    background-color: bisque;
+    float: left;
+}
+
+.work-partial-prop-1 {
+    width: 100%;
+    height: 30%;
+}
+
+.work-partial-prop-2 {
+    width: 100%;
+    height: 70%;
+}
