@@ -40,6 +40,7 @@ namespace InventoryControlProject.Controllers
                 }
                 return View();                                
         }
+      
         public RedirectResult Logout()
         {
             if(auth.Logout() == true)

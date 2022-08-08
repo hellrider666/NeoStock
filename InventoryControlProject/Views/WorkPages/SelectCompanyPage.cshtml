@@ -4,27 +4,9 @@
 <script type="text/javascript" src="~/js/CompanyPopUpScript.js"></script>
 <div class="Company-main">
     <div class="Company-cont">
-        <div class="Company-content">
+        <div class="Company-content" id="CompanyList">
             
-            <table class="Company-table">
-                <tr class="Company-table-title">
-                    <th>Название</th>
-                    <th>Короткий адрес</th>
-                    <th>Тип подразделения</th>
-                    <th>Выбрать</th>
-                    <th><a href="#" id="company_open_pop_up" onclick="CompOpenPopUp()">Создать компанию</a></th>
-                </tr>
-                @foreach (var item in Model)
-                {
-                    
-                    <tr>                       
-                        <td>@Html.DisplayFor(modelItem => item.CompanyName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.ShortAddress)</td>
-                        <td>@Html.DisplayFor(modelItem => item.EnterpriseName)</td>
-                        <td><a asp-action="" asp-controller="">&#9989</a></td>
-                    </tr>
-                }
-            </table>
+            
         </div>
         <div id="CompanyPopUp" class="Company-popup">
             <div class="Company-popup-cont">
@@ -44,3 +26,8 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {       
+            $('#CompanyList').load('@Url.Action("CompaniesListPartialView", "WorkPages")')
+    })
+</script>

@@ -41,6 +41,12 @@ namespace InventoryControlProject.Controllers
             
             return View();
         }
+        public IActionResult CompaniesListPartialView()
+        {
+            IEnumerable<CompaniesDTO> compDTO = compSev.GetAllCompaniesByClientLogin(User.Identity.Name);
+            var Companies = _mapper.Map<IEnumerable<CompaniesDTO>, List<CompaniesViewModel>>(compDTO);
+            return PartialView(Companies);
+        }
         public IActionResult SelectCompanyPage()
         {
 
@@ -54,10 +60,7 @@ namespace InventoryControlProject.Controllers
             }
             //super very bad
             ViewBag.CompTypesSelect = selectListItems;
-
-            IEnumerable<CompaniesDTO> compDTO = compSev.GetAllCompaniesByClientLogin(User.Identity.Name);
-            var Companies = _mapper.Map<IEnumerable<CompaniesDTO>, List<CompaniesViewModel>>(compDTO);
-            return View(Companies);
+            return View();
         }
         //public JsonResult LoadDropDowns()
         //{
