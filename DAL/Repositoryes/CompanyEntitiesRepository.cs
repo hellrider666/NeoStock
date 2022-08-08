@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace DAL.Repositoryes
 {
@@ -31,14 +32,13 @@ namespace DAL.Repositoryes
 
         public IEnumerable<CompanyEntities> GetAll()
         {
-            return context.CompanyEntities;
+            return context.CompanyEntities.Include(x=>x.Client).ThenInclude(x=>x.ClientIden).Include(x=>x.EnterpriseType);
         }
 
         public CompanyEntities GetByID(int Id)
         {
-            return context.CompanyEntities.Find(Id);
-        }
-
+            return context.CompanyEntities.FirstOrDefault(x => x.ClientID == Id);
+        }           
         public CompanyEntities GetByString(string value)
         {
             throw new NotImplementedException();

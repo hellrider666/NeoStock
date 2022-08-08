@@ -17,6 +17,7 @@ namespace DAL.Repositoryes
         private EmployeeEntitiesRepository EmployeeEntitiesRepository;
         private EnterpriseEntitiesRepository EnterpriseEntitiesRepository;
         private ProductionEntitiesRepository ProductionEntitiesRepository;
+        private DepartmentTypeEntitiesRepository departmentEntitiestypesRep;
         private RolesRepository RolesRepository;
 
         public EFUnitOfWork(DatabaseContext context)
@@ -111,6 +112,20 @@ namespace DAL.Repositoryes
                 return RolesRepository;
             }
         }
+
+        public IRepository<DepartmentTypesEntities> DepartTypesEntities
+        {
+            get
+            {
+                if(departmentEntitiestypesRep == null)
+                {
+                    departmentEntitiestypesRep = new DepartmentTypeEntitiesRepository(context);
+                }
+                return departmentEntitiestypesRep;
+            }
+        }
+           
+
         public void Save()
         {
             context.SaveChanges();

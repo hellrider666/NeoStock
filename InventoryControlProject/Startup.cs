@@ -43,6 +43,7 @@ namespace InventoryControlProject
             services.AddTransient<IUnitOfWork, EFUnitOfWork>();
             services.AddScoped<IRegistrationService, RegistrationService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ICompaniesService, CompaniesService>();
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

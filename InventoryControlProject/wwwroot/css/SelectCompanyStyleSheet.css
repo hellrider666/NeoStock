@@ -1,0 +1,99 @@
+﻿.Company-main {
+    width:100%;
+    height:100%;
+}
+.Company-cont {
+    width: 100%;
+    height: 100%;
+}
+.Company-content {
+    width: 100%;
+    height: 100%;
+}
+.Company-table {    
+    border-collapse:collapse;
+    margin: auto;
+    width: 40%;
+    border: 1px solid black;
+}
+.Company-table td {
+    background-color:aquamarine;
+    text-align: center;
+}
+    .Company-table a {
+        text-decoration: none;
+    }
+.Company-table-title{
+    background-color:antiquewhite;
+}
+.Company-popup{
+    display:none;
+    width:100%;
+    height:100%;
+    position:fixed;
+    left:0;
+    top:0;
+    z-index:2;
+}
+.Company-popup.active{
+    display:block;
+}
+.Company-popup-cont{
+    display:flex;
+    width:100%;
+    height:100%;
+}
+.Company-popup-content{
+    margin:auto;
+    width:500px;
+    background-color:cadetblue;
+    border-radius:10px;
+    text-align:center;
+    padding:100px 15px 110px 15px;
+    position:relative;
+}
+.Company-popup-content p{
+    font-size:28px;
+    font-family:Garamond;
+    font-weight:600;
+    color:#22262D;
+    margin-bottom:40px;
+}
+    .Company-popup-content input {
+        display: block;
+        margin: 25px auto 0px auto;
+        width: 330px;
+        padding: 17px 20px;
+        background-color: #E5E5E5;
+        border-radius: 10px;
+        border: none;
+        font-family: Garamond;
+        font-weight: 500;
+        font-size: 18px;
+        color: #89909F;
+}
+.Company-popup-content input:focus{
+    outline:none;
+}
+.Company-popup-content button{
+    cursor:pointer;
+    display:block;
+    width:330px;
+    height:60px;
+    margin:60px auto 0px auto;
+    padding 20px 0px;
+    font-family:Garamond;
+    font-weight:500;
+    font-size:16px;
+    border:none;
+    color:#fff;
+    border-radius:10px;
+    background-color:orange;
+}
+.Company-popup-close{
+    position:absolute;
+    top:15px;
+    right:15px;
+    font-size:21px;
+    cursor:pointer;
+}

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220802030751_init_1")]
-    partial class init_1
+    [Migration("20220808063251_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -129,17 +129,11 @@ namespace DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("clientEntitiesID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("enterpriseEntityID")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
 
-                    b.HasIndex("clientEntitiesID");
+                    b.HasIndex("ClientID");
 
-                    b.HasIndex("enterpriseEntityID");
+                    b.HasIndex("EnterpriseTypeID");
 
                     b.ToTable("CompanyEntities");
                 });
@@ -156,10 +150,10 @@ namespace DAL.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("CompanyEntityID")
+                    b.Property<int>("CompanyID")
                         .HasColumnType("int");
 
-                    b.Property<int>("CompanyID")
+                    b.Property<int>("DepartTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("DepartmentName")
@@ -182,9 +176,29 @@ namespace DAL.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CompanyEntityID");
+                    b.HasIndex("CompanyID");
+
+                    b.HasIndex("DepartTypeId");
 
                     b.ToTable("DepartmentEntities");
+                });
+
+            modelBuilder.Entity("DAL.Entities.DepartmentTypesEntities", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TypeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DepartmentTypesEntities");
                 });
 
             modelBuilder.Entity("DAL.Entities.EmployeeEntities", b =>
@@ -199,7 +213,7 @@ namespace DAL.Migrations
                         .HasMaxLength(3)
                         .HasColumnType("nvarchar(3)");
 
-                    b.Property<int>("DepartmentID")
+                    b.Property<int?>("DepartmentID")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -221,7 +235,6 @@ namespace DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("RoleID")
-                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -291,8 +304,7 @@ namespace DAL.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("DepartmentID")
-                        .IsUnique();
+                    b.HasIndex("DepartmentID");
 
                     b.ToTable("ProductionEntities");
                 });
@@ -343,39 +355,47 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.CompanyEntities", b =>
                 {
-                    b.HasOne("DAL.Entities.ClientEntities", "clientEntities")
+                    b.HasOne("DAL.Entities.ClientEntities", "Client")
                         .WithMany("CompanyEntities")
-                        .HasForeignKey("clientEntitiesID")
+                        .HasForeignKey("ClientID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DAL.Entities.EnterpriseEntities", "enterpriseEntity")
+                    b.HasOne("DAL.Entities.EnterpriseEntities", "EnterpriseType")
                         .WithMany("CompanyEntities")
-                        .HasForeignKey("enterpriseEntityID")
+                        .HasForeignKey("EnterpriseTypeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("clientEntities");
+                    b.Navigation("Client");
 
-                    b.Navigation("enterpriseEntity");
+                    b.Navigation("EnterpriseType");
                 });
 
             modelBuilder.Entity("DAL.Entities.DepartmentEntities", b =>
                 {
-                    b.HasOne("DAL.Entities.CompanyEntities", "CompanyEntity")
+                    b.HasOne("DAL.Entities.CompanyEntities", "Company")
                         .WithMany()
-                        .HasForeignKey("CompanyEntityID");
+                        .HasForeignKey("CompanyID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("CompanyEntity");
+                    b.HasOne("DAL.Entities.DepartmentTypesEntities", "DepartType")
+                        .WithMany("departments")
+                        .HasForeignKey("DepartTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+
+                    b.Navigation("DepartType");
                 });
 
             modelBuilder.Entity("DAL.Entities.EmployeeEntities", b =>
                 {
                     b.HasOne("DAL.Entities.DepartmentEntities", "Department")
                         .WithMany()
-                        .HasForeignKey("DepartmentID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DepartmentID");
 
                     b.HasOne("DAL.Entities.Roles", "Role")
                         .WithMany("EmployeeEntities")
@@ -391,8 +411,8 @@ namespace DAL.Migrations
             modelBuilder.Entity("DAL.Entities.ProductionEntities", b =>
                 {
                     b.HasOne("DAL.Entities.DepartmentEntities", "Department")
-                        .WithOne("ProductionEntities")
-                        .HasForeignKey("DAL.Entities.ProductionEntities", "DepartmentID")
+                        .WithMany()
+                        .HasForeignKey("DepartmentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -410,9 +430,9 @@ namespace DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DAL.Entities.DepartmentEntities", b =>
+            modelBuilder.Entity("DAL.Entities.DepartmentTypesEntities", b =>
                 {
-                    b.Navigation("ProductionEntities");
+                    b.Navigation("departments");
                 });
 
             modelBuilder.Entity("DAL.Entities.EnterpriseEntities", b =>

@@ -15,10 +15,14 @@ namespace DAL.Entities
         [Required]
         public int CompanyID { get; set; }
         [Required]
-        public CompanyEntities CompanyEntity { get; set; }
+        public CompanyEntities Company { get; set; }
         [Required]
         [MaxLength(100)]
         public string Address { get; set; }
+        [Required]
+        public int DepartTypeId { get; set; }
+        [Required]
+        public DepartmentTypesEntities DepartType { get; set; }
         [Required]
         [MaxLength(50)]
         public string ShortAddress { get; set; }
@@ -27,7 +31,7 @@ namespace DAL.Entities
         [Required]
         [MaxLength(255)]
         public string Description { get; set; }
-        ICollection<EmployeeEntities> EmployeeEntities { get; set; }
-        public ProductionEntities ProductionEntities { get; set; }
+        EmployeeEntities Employee { get; set; }
+        ICollection<ProductionEntities> ProductionEntities { get; set; }
     }
 }

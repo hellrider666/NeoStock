@@ -7,8 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace DAL.Entities
 {
     public class ProductionEntities
-    {
-        
+    {       
         public int ID { get; set; }
         [Required]
         [MaxLength(100)]

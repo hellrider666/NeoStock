@@ -14,6 +14,7 @@ namespace DAL.Interfaces
         IRepository<EmployeeEntities> EmployeeEntities { get; }
         IRepository<EnterpriseEntities> EnterpriseEntities { get; }
         IRepository<ProductionEntities> ProductionEntities { get; }
+        IRepository<DepartmentTypesEntities> DepartTypesEntities { get; }
         IRepository<Roles> Roles { get; }
         void Save();
         void SaveAsync();

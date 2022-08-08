@@ -13,13 +13,6 @@ namespace DAL.Entities
         [MaxLength(50)]
         public string EmpFullName { get; set; }
         [Required]
-        [MaxLength(50)]
-        public int RoleID { get; set; }
-        [Required]
-        public Roles Role { get; set; }
-        [Required]
-        public int DepartmentID { get; set; }
-        [Required]
         public DepartmentEntities Department { get; set; }
         [Required]
         [MaxLength(3)]
@@ -32,7 +25,9 @@ namespace DAL.Entities
         public string PhoneNumber { get; set; }
         [Required]
         public DateTime RegDate { get; set; } = DateTime.Now;
-
-
+        [Required]
+        public int RoleID { get; set; }
+        [Required]
+        public Roles Role { get; set; }
     }
 }

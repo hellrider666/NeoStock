@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 using InventoryControlProject.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace InventoryControlProject.Controllers
 {
@@ -18,12 +19,14 @@ namespace InventoryControlProject.Controllers
         private readonly IMapper _mapper;
 
         IClientService clientServ;
-
-        public WorkPagesController(ILogger<WorkPagesController> logger, IClientService serv, IMapper mapper)
+        ICompaniesService compSev;
+        
+        public WorkPagesController(ILogger<WorkPagesController> logger, IClientService serv, IMapper mapper, ICompaniesService compSev)
         {
             _logger = logger;
             clientServ = serv;
             _mapper = mapper;
+            this.compSev = compSev;
         }
         [HttpGet]
         
@@ -35,7 +38,30 @@ namespace InventoryControlProject.Controllers
         }
         public IActionResult StartWorkPages()
         {
+            
             return View();
         }
+        public IActionResult SelectCompanyPage()
+        {
+
+            IEnumerable<CompaniesTypesListDTO> typeDTO = compSev.GetAllCompaniesTypes();
+            var compTypes = _mapper.Map<IEnumerable<CompaniesTypesListDTO>, List<CompaniesTypesListViewModel>>(typeDTO);
+            //very very bad
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            foreach(var i in compTypes)
+            {
+                selectListItems.Add(new SelectListItem {Value = Convert.ToString(i.ID), Text = i.EnterpriseName});
+            }
+            //super very bad
+            ViewBag.CompTypesSelect = selectListItems;
+
+            IEnumerable<CompaniesDTO> compDTO = compSev.GetAllCompaniesByClientLogin(User.Identity.Name);
+            var Companies = _mapper.Map<IEnumerable<CompaniesDTO>, List<CompaniesViewModel>>(compDTO);
+            return View(Companies);
+        }
+        //public JsonResult LoadDropDowns()
+        //{
+            
+        //}
     }
 }

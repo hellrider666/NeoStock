@@ -33,7 +33,14 @@ namespace InventoryControlProject.Controllers
         {
             if(User.Identity.IsAuthenticated)
             {
-                return Redirect("/WorkPages/StartWorkPages");
+                if(User.IsInRole("Предприниматель"))
+                {
+                    return Redirect("/WorkPages/SelectCompanyPage");
+                }
+                else
+                {
+                    return Redirect("/WorkPages/StartWorkPages");
+                }              
             }
             return View();
         }

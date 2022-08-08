@@ -12,6 +12,8 @@ namespace InventoryControlProject
             CreateMap<AuthViewModel, AuthDTO>().ForMember(x => x.Role, y => y.MapFrom(z => z.Role));
             CreateMap<RegistrationViewModel, RegistrationDTO>();
             CreateMap<ProfileDTO, ProfileViewModel>();
+            CreateMap<CompaniesDTO, CompaniesViewModel>();
+            CreateMap<CompaniesTypesListDTO, CompaniesTypesListViewModel>();
         }
     }
 }

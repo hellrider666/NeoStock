@@ -24,6 +24,7 @@ namespace DAL.DataContext
 
         public static OptionalBuild ops = new OptionalBuild();
         public DatabaseContext(DbContextOptions<DatabaseContext> options) :base(options) { }
+        public DbSet<DepartmentTypesEntities> DepartmentTypesEntities { get; set; }
         public DbSet<ClientIdentity> clientIdentities { get; set; }
         public DbSet<ClientEntities> clientEntities { get; set; }
         public DbSet<Roles> Roles { get; set; }

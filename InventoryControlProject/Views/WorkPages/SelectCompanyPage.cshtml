@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CompaniesViewModel> 
+
+<link href="~/css/SelectCompanyStyleSheet.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="~/js/CompanyPopUpScript.js"></script>
+<div class="Company-main">
+    <div class="Company-cont">
+        <div class="Company-content">
+            
+            <table class="Company-table">
+                <tr class="Company-table-title">
+                    <th>Название</th>
+                    <th>Короткий адрес</th>
+                    <th>Тип подразделения</th>
+                    <th>Выбрать</th>
+                    <th><a href="#" id="company_open_pop_up" onclick="CompOpenPopUp()">Создать компанию</a></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    
+                    <tr>                       
+                        <td>@Html.DisplayFor(modelItem => item.CompanyName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ShortAddress)</td>
+                        <td>@Html.DisplayFor(modelItem => item.EnterpriseName)</td>
+                        <td><a asp-action="" asp-controller="">&#9989</a></td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div id="CompanyPopUp" class="Company-popup">
+            <div class="Company-popup-cont">
+                <div class="Company-popup-content">
+                    <p>создать компанию</p>
+                    <form>
+                        <input type="text" placeholder="Название"/>
+                        <input type="text" placeholder="Адрес"/>
+                        <input type="text" placeholder="Короткий Адрес"/>
+                        <input type="text" placeholder="Описание"/ >
+                        <select name="CompTypeId" asp-items="@ViewBag.CompTypesSelect"></select>
+                        <button>Создать</button>
+                    </form>
+                    <div id="Company_Close_PopUp" onclick="CompClosePopUp()" class="Company-popup-close">&#10006</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

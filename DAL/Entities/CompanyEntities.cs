@@ -21,13 +21,13 @@ namespace DAL.Entities
         [Required]
         public int ClientID { get; set; }
         [Required]
-        public ClientEntities clientEntities { get; set; }
+        public ClientEntities Client { get; set; }
         [Required]
         public DateTime RegDate { get; set; } = DateTime.Now;
         [Required]
         public int EnterpriseTypeID { get; set; }
         [Required]
-        public EnterpriseEntities enterpriseEntity { get; set; }
+        public EnterpriseEntities EnterpriseType { get; set; }
         [MaxLength(255)]
         [Required]
         public string Description { get; set; }

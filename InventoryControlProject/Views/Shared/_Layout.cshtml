@@ -4,11 +4,10 @@
     <meta charset="utf-8" />
     <link href="~/css/LayoutStyleSheet.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="~/js/LayoutScripts.js"></script>
-    <script type="text/javascript">
-       
-    </script>
+    
 </head>
 <body class="Layout_body">
+    
     <header class="Layout_Header">
         <div class="Layout_Head_Cont">
             <div class="Layout_Head_Body">
@@ -23,9 +22,9 @@
                     }
                 </div>
                 <div onmouseover="Layout_CloseMenu()" class="Layout_Head_ScrollContetn">
-                                      
+
                 </div>
-                <div   class="LayOut_MenuSide">
+                <div class="LayOut_MenuSide">
                     @if (User.Identity.IsAuthenticated)
                     {
                         <script type="text/javascript">
@@ -34,10 +33,10 @@
 
                             };
                         </script>
-                        
+
                         <div class="dropdown">
                             <button id="dropbtn" class="dropbtn" disabled onclick="Layout_OpenDropdown()">Профиль</button>
-                            <div  id="dropdown-content" class="dropdown-content">
+                            <div id="dropdown-content" class="dropdown-content">
                                 <img class="profile_photo" src="" />
                                 <p id="Layout_FullName">Ваше имя</p>
                                 <a class="Layout_ChangeProfile" onclick="Layout_ChangeProfile()">Редактировать профиль</a>
@@ -47,11 +46,11 @@
                     }
                     else
                     {
-                     <script type="text/javascript">
+                        <script type="text/javascript">
                             window.onload = function () {
-                              
+
                             };
-                       </script>
+                        </script>
                         <div class="dropdown">
                             <button class="dropbtn" onclick="Layout_OpenDropdown_without_data()">Меню</button>
                             <div id="dropdown-content" class="dropdown-content">
@@ -72,7 +71,6 @@
         @RenderBody()
     </main>
     <footer onmouseover="Layout_CloseMenu()" class="Layout_Footer">
-
     </footer>
 </body>
 

@@ -3,10 +3,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAL.Migrations
 {
-    public partial class init_1 : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "DepartmentTypesEntities",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TypeName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DepartmentTypesEntities", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "EnterpriseEntities",
                 columns: table => new
@@ -92,24 +106,22 @@ namespace DAL.Migrations
                     Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     ShortAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ClientID = table.Column<int>(type: "int", nullable: false),
-                    clientEntitiesID = table.Column<int>(type: "int", nullable: false),
                     RegDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EnterpriseTypeID = table.Column<int>(type: "int", nullable: false),
-                    enterpriseEntityID = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CompanyEntities", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_CompanyEntities_clientEntities_clientEntitiesID",
-                        column: x => x.clientEntitiesID,
+                        name: "FK_CompanyEntities_clientEntities_ClientID",
+                        column: x => x.ClientID,
                         principalTable: "clientEntities",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CompanyEntities_EnterpriseEntities_enterpriseEntityID",
-                        column: x => x.enterpriseEntityID,
+                        name: "FK_CompanyEntities_EnterpriseEntities_EnterpriseTypeID",
+                        column: x => x.EnterpriseTypeID,
                         principalTable: "EnterpriseEntities",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -123,8 +135,8 @@ namespace DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DepartmentName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CompanyID = table.Column<int>(type: "int", nullable: false),
-                    CompanyEntityID = table.Column<int>(type: "int", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    DepartTypeId = table.Column<int>(type: "int", nullable: false),
                     ShortAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     RegDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
@@ -133,11 +145,17 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_DepartmentEntities", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_DepartmentEntities_CompanyEntities_CompanyEntityID",
-                        column: x => x.CompanyEntityID,
+                        name: "FK_DepartmentEntities_CompanyEntities_CompanyID",
+                        column: x => x.CompanyID,
                         principalTable: "CompanyEntities",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DepartmentEntities_DepartmentTypesEntities_DepartTypeId",
+                        column: x => x.DepartTypeId,
+                        principalTable: "DepartmentTypesEntities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -147,12 +165,12 @@ namespace DAL.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EmpFullName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    RoleID = table.Column<int>(type: "int", maxLength: 50, nullable: false),
-                    DepartmentID = table.Column<int>(type: "int", nullable: false),
+                    DepartmentID = table.Column<int>(type: "int", nullable: true),
                     Age = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    RegDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    RegDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RoleID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -162,7 +180,7 @@ namespace DAL.Migrations
                         column: x => x.DepartmentID,
                         principalTable: "DepartmentEntities",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_EmployeeEntities_Roles_RoleID",
                         column: x => x.RoleID,
@@ -208,19 +226,24 @@ namespace DAL.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CompanyEntities_clientEntitiesID",
+                name: "IX_CompanyEntities_ClientID",
                 table: "CompanyEntities",
-                column: "clientEntitiesID");
+                column: "ClientID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CompanyEntities_enterpriseEntityID",
+                name: "IX_CompanyEntities_EnterpriseTypeID",
                 table: "CompanyEntities",
-                column: "enterpriseEntityID");
+                column: "EnterpriseTypeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DepartmentEntities_CompanyEntityID",
+                name: "IX_DepartmentEntities_CompanyID",
                 table: "DepartmentEntities",
-                column: "CompanyEntityID");
+                column: "CompanyID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DepartmentEntities_DepartTypeId",
+                table: "DepartmentEntities",
+                column: "DepartTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EmployeeEntities_DepartmentID",
@@ -235,8 +258,7 @@ namespace DAL.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ProductionEntities_DepartmentID",
                 table: "ProductionEntities",
-                column: "DepartmentID",
-                unique: true);
+                column: "DepartmentID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -252,6 +274,9 @@ namespace DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "CompanyEntities");
+
+            migrationBuilder.DropTable(
+                name: "DepartmentTypesEntities");
 
             migrationBuilder.DropTable(
                 name: "clientEntities");
