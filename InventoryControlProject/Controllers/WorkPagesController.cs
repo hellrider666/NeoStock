@@ -42,6 +42,7 @@ namespace InventoryControlProject.Controllers
             
             return View();
         }
+        [HttpGet]
         public IActionResult CompaniesListPartialView()
         {
             IEnumerable<CompaniesDTO> compDTO = compSev.GetAllCompaniesByClientLogin(User.Identity.Name);

@@ -11,10 +11,13 @@ function CreateCompany() {
         url: "/WorkPages/CreateCompany",
         data: Model + "&Id=" + typeId,
         success: function (data) {
-            $(function () {
-                $('#CompanyList').load('@Url.Action("CompaniesListPartialView", "WorkPages")')
-            });
-            document.getElementById('CompanyResult-text').innerHTML = "Компания успешно создана!";
+            if (JSON.parse(data) === true) {
+                LoadCompaniesList();
+                document.getElementById('CompanyResult-text').innerHTML = "Компания успешно создана!";
+            }
+            else{
+                document.getElementById('CompanyResult-text').innerHTML = "Ошибка при создании!";
+                }
         },
         error: function (error) {
             alert(error.responseText);

@@ -31,7 +31,10 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function () {       
+    $(document).ready(function () {
          $('#CompanyList').load('@Url.Action("CompaniesListPartialView", "WorkPages")')
-    })   
+    })
+    function LoadCompaniesList() {
+        $('#CompanyList').load('@Url.Action("CompaniesListPartialView", "WorkPages")');
+    }
 </script>
