@@ -14,6 +14,7 @@ namespace InventoryControlProject
             CreateMap<ProfileDTO, ProfileViewModel>();
             CreateMap<CompaniesDTO, CompaniesViewModel>();
             CreateMap<CompaniesTypesListDTO, CompaniesTypesListViewModel>();
+            CreateMap<CreateCompanyViewModel, CreateCompanyDTO>();
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Helpers;
 using InventoryControlProject.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using FormHelper;
 
 namespace InventoryControlProject.Controllers
 {
@@ -62,9 +63,18 @@ namespace InventoryControlProject.Controllers
             ViewBag.CompTypesSelect = selectListItems;
             return View();
         }
-        //public JsonResult LoadDropDowns()
-        //{
-            
-        //}
+        [HttpPost]
+        public JsonResult CreateCompany(CreateCompanyViewModel model, int Id)
+        {
+            var company = _mapper.Map<CreateCompanyViewModel, CreateCompanyDTO>(model);
+            if(compSev.CreateCompany(company, Id, User.Identity.Name) == true)
+            {
+                return Json(true);
+            }
+            else
+            {
+                return Json(false);
+            }
+        }
     }
 }

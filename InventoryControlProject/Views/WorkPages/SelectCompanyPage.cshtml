@@ -1,7 +1,9 @@
-﻿@model IEnumerable<CompaniesViewModel> 
+﻿
+@model CreateCompanyViewModel 
 
 <link href="~/css/SelectCompanyStyleSheet.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="~/js/CompanyPopUpScript.js"></script>
+<script src="~/js/CreateCompanyScripts.js"></script>
 <div class="Company-main">
     <div class="Company-cont">
         <div class="Company-content" id="CompanyList">
@@ -12,22 +14,24 @@
             <div class="Company-popup-cont">
                 <div class="Company-popup-content">
                     <p>создать компанию</p>
-                    <form>
-                        <input type="text" placeholder="Название"/>
-                        <input type="text" placeholder="Адрес"/>
-                        <input type="text" placeholder="Короткий Адрес"/>
-                        <input type="text" placeholder="Описание"/ >
-                        <select name="CompTypeId" asp-items="@ViewBag.CompTypesSelect"></select>
-                        <button>Создать</button>
-                    </form>
+                    <form id="CreateCompForm">
+                        <input asp-for="CompanyName" type="text" placeholder="Название" />
+                        <input asp-for="Address" type="text" placeholder="Адрес" />
+                        <input asp-for="ShortAddress" type="text" placeholder="Короткий Адрес" />
+                        <textarea asp-for="Description" placeholder="Описание"></textarea>
+                        <select id="comptypeId" name="CompTypeId" asp-items="@ViewBag.CompTypesSelect"></select>
+                        <button type="button" onclick="CreateCompany()">Создать</button>
+                    </form>                                       
                     <div id="Company_Close_PopUp" onclick="CompClosePopUp()" class="Company-popup-close">&#10006</div>
+                    <p id="CompanyResult-text"></p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
     $(document).ready(function () {       
-            $('#CompanyList').load('@Url.Action("CompaniesListPartialView", "WorkPages")')
-    })
+         $('#CompanyList').load('@Url.Action("CompaniesListPartialView", "WorkPages")')
+    })   
 </script>

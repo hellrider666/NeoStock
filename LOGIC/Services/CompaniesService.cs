@@ -29,5 +29,23 @@ namespace LOGIC.Services
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<EnterpriseEntities, CompaniesTypesListDTO>()).CreateMapper();
             return mapper.Map<IEnumerable<EnterpriseEntities>, List<CompaniesTypesListDTO>>(database.EnterpriseEntities.GetAll());
         }
+
+        public bool CreateCompany(CreateCompanyDTO company_, int Id, string Login)
+        {
+            try
+            {
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<CreateCompanyDTO, CompanyEntities>()).CreateMapper();
+                var company = mapper.Map<CreateCompanyDTO, CompanyEntities>(company_);
+                company.EnterpriseType = database.EnterpriseEntities.GetByID(Id);
+                company.Client = database.ClientEntities.GetByString(Login);
+                database.CompanyEntities.Create(company);
+                database.Save();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

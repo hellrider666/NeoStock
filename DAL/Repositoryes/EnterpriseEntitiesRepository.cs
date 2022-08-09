@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace DAL.Repositoryes
 {
@@ -36,7 +37,7 @@ namespace DAL.Repositoryes
 
         public EnterpriseEntities GetByID(int Id)
         {
-            return context.EnterpriseEntities.Find(Id);
+            return context.EnterpriseEntities.FirstOrDefault(x=>x.ID == Id);
         }
 
         public EnterpriseEntities GetByString(string value)

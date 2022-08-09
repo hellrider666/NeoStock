@@ -9,5 +9,6 @@ namespace LOGIC.Interfaces
     {
         IEnumerable<CompaniesDTO> GetAllCompaniesByClientLogin(string Login);
         IEnumerable<CompaniesTypesListDTO> GetAllCompaniesTypes();
+        bool CreateCompany(CreateCompanyDTO company_, int Id, string Login);
     }
 }

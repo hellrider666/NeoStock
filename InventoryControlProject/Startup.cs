@@ -22,6 +22,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using FormHelper;
 
 namespace InventoryControlProject
 {
@@ -37,7 +38,7 @@ namespace InventoryControlProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddFormHelper();
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(new AppConfiguration().sqlConnectionString));
             services.AddScoped<IClientService, ClientService>();
             services.AddTransient<IUnitOfWork, EFUnitOfWork>();
