@@ -49,6 +49,16 @@ namespace InventoryControlProject.Controllers
             var Companies = _mapper.Map<IEnumerable<CompaniesDTO>, List<CompaniesViewModel>>(compDTO);
             return PartialView(Companies);
         }
+        [HttpGet]
+        public IActionResult DepartmentsPartialView()
+        {
+
+            return PartialView();
+        }
+        public IActionResult SelectDepartmentPage()
+        {
+            return View();
+        }
         public IActionResult SelectCompanyPage()
         {
 
