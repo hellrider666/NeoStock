@@ -8,7 +8,7 @@ namespace LOGIC.Interfaces
     public interface IDepartmentsService
     {
         IEnumerable<DepartTypesDTO> GetAllDepartsTypes();
-        IEnumerable<DepartmentsListDTO> GetAllDepartmentsByCompanyID();
+        IEnumerable<DepartmentsListDTO> GetAllDepartmentsByCompanyID(int CompId);
         bool CreateDepartment(CreateDepartmentDTO departmentDTO, int DepartTypeId, int CompanyId);
     }
 }

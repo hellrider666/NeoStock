@@ -35,6 +35,11 @@ namespace DAL.Repositoryes
             return context.CompanyEntities.Include(x=>x.Client).ThenInclude(x=>x.ClientIden).Include(x=>x.EnterpriseType);
         }
 
+        public CompanyEntities GetByAuthData(string val_1, string val_2)
+        {
+            throw new NotImplementedException();
+        }
+
         public CompanyEntities GetByID(int Id)
         {
             return context.CompanyEntities.FirstOrDefault(x => x.ClientID == Id);

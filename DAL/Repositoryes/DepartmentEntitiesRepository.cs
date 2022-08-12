@@ -31,7 +31,12 @@ namespace DAL.Repositoryes
 
         public IEnumerable<DepartmentEntities> GetAll()
         {
-            return context.DepartmentEntities;
+            return context.DepartmentEntities.Include(x=>x.DepartType).Include(y=>y.Company);
+        }
+
+        public DepartmentEntities GetByAuthData(string val_1, string val_2)
+        {
+            throw new NotImplementedException();
         }
 
         public DepartmentEntities GetByID(int Id)

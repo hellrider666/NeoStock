@@ -12,13 +12,15 @@ function Layout_OpenDropdown_without_data() {
 var ContentBar;
 var Cachedata;
 
+
 function Layout_CloseMenu() {
     document.getElementById('dropdown-content').style.display = "none";
 }
 function Layout_LoadProfile(login) {
+
     $.ajax({
         type: 'GET',
-        url: '../WorkPages/LoadProfileData',
+        url: '/WorkPages/LoadProfileData',
         data: {
             login: login,
         },

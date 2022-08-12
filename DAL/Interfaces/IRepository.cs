@@ -12,6 +12,7 @@ namespace DAL.Interfaces
         void Update(T item);
         void Delete(int Id);
         T GetByString(string value);
+        T GetByAuthData(string val_1, string val_2);
         
     }
 }

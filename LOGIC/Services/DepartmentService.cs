@@ -6,6 +6,7 @@ using LOGIC.Interfaces;
 using DAL.Entities;
 using DAL.Interfaces;
 using AutoMapper;
+using System.Linq;
 
 namespace LOGIC.Services
 {
@@ -24,9 +25,10 @@ namespace LOGIC.Services
             return mapper.Map<IEnumerable<DepartmentTypesEntities>, List<DepartTypesDTO>>(database.DepartTypesEntities.GetAll());
         }
 
-        public IEnumerable<DepartmentsListDTO> GetAllDepartmentsByCompanyID()
+        public IEnumerable<DepartmentsListDTO> GetAllDepartmentsByCompanyID(int CompId)
         {
-            throw new NotImplementedException();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<DepartmentEntities, DepartmentsListDTO>().ForMember(x=>x.TypeName, y=>y.MapFrom(z=>z.DepartType.TypeName))).CreateMapper();
+            return mapper.Map<IEnumerable<DepartmentEntities>, List<DepartmentsListDTO>>(database.DepartmentEntities.GetAll().Where(x=>x.Company.ID == CompId));
         }
 
         public bool CreateDepartment(CreateDepartmentDTO departmentDTO, int DepartTypeId, int CompanyId)

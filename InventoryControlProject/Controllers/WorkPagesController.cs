@@ -18,16 +18,18 @@ namespace InventoryControlProject.Controllers
     {
         private readonly ILogger<WorkPagesController> _logger;
         private readonly IMapper _mapper;
+        static int CompanyId { get; set; }
 
         IClientService clientServ;
         ICompaniesService compSev;
-        
-        public WorkPagesController(ILogger<WorkPagesController> logger, IClientService serv, IMapper mapper, ICompaniesService compSev)
+        IDepartmentsService departServ;
+        public WorkPagesController(ILogger<WorkPagesController> logger, IClientService serv, IMapper mapper, ICompaniesService compSev, IDepartmentsService departServ)
         {
             _logger = logger;
             clientServ = serv;
             _mapper = mapper;
             this.compSev = compSev;
+            this.departServ = departServ;
         }
         [HttpGet]
         
@@ -50,13 +52,24 @@ namespace InventoryControlProject.Controllers
             return PartialView(Companies);
         }
         [HttpGet]
-        public IActionResult DepartmentsPartialView()
+        public IActionResult DepartmentsListPartialView()
         {
-
-            return PartialView();
+            IEnumerable<DepartmentsListDTO> departList = departServ.GetAllDepartmentsByCompanyID(CompanyId);
+            var Departments = _mapper.Map<IEnumerable<DepartmentsListDTO>, List<DepartmentsListViewModel>>(departList);
+            return PartialView(Departments);
         }
-        public IActionResult SelectDepartmentPage()
+        public IActionResult SelectDepartmentPage(int ID)
         {
+            CompanyId = ID;
+            IEnumerable<DepartTypesDTO> typeDTO = departServ.GetAllDepartsTypes();
+            var departTypes =_mapper.Map<IEnumerable<DepartTypesDTO>, List<DepartTypeListViewModel>>(typeDTO);
+            //also very bad
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            foreach(var i in departTypes)
+            {
+                selectListItems.Add(new SelectListItem { Value = Convert.ToString(i.Id), Text = i.TypeName });
+            }
+            ViewBag.DepartTypeSelect = selectListItems;
             return View();
         }
         public IActionResult SelectCompanyPage()
@@ -70,7 +83,7 @@ namespace InventoryControlProject.Controllers
             {
                 selectListItems.Add(new SelectListItem {Value = Convert.ToString(i.ID), Text = i.EnterpriseName});
             }
-            //super very bad
+            
             ViewBag.CompTypesSelect = selectListItems;
             return View();
         }

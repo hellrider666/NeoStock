@@ -35,6 +35,11 @@ namespace DAL.Repositoryes
             return context.EnterpriseEntities;
         }
 
+        public EnterpriseEntities GetByAuthData(string val_1, string val_2)
+        {
+            throw new NotImplementedException();
+        }
+
         public EnterpriseEntities GetByID(int Id)
         {
             return context.EnterpriseEntities.FirstOrDefault(x=>x.ID == Id);

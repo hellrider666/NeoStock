@@ -36,7 +36,7 @@ namespace InventoryControlProject.Controllers
                 bool check = auth.Auth(_user);
                 if (check == true)
                 {
-                    return Redirect("/WorkPages/StartWorkPages");
+                    return Redirect("/WorkPages/SelectCompanyPage");
                 }
                 return View();                                
         }

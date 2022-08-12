@@ -30,7 +30,7 @@ namespace LOGIC.Services
         {
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<AuthDTO, ClientIdentity>().ForMember(x=>x.Role, y=>y.MapFrom(z=>z.Role))).CreateMapper();
             var _user = mapper.Map<AuthDTO, ClientIdentity>(user);
-            var currentUser = database.ClientIdentity.GetByString(_user.Login);
+            var currentUser = database.ClientIdentity.GetByAuthData(_user.Login, _user.Password);
             if(currentUser != null)
             {
                 Authenticate(currentUser);

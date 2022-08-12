@@ -1,5 +1,40 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model CreateDepartmentViewModel
+ 
+<link href="~/css/SelectCompanyStyleSheet.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="~/js/CompanyPopUpScript.js"></script>
+<script src="~/js/CreateCompanyScripts.js"></script>
+<div class="Company-main">
+    <div class="Company-cont">
+        <div class="Company-content" id="CompanyList">
+            
+            
+        </div>
+        <div id="CompanyPopUp" class="Company-popup">
+            <div class="Company-popup-cont">
+                <div class="Company-popup-content">
+                    <p>создать компанию</p>
+                    <form id="CreateCompForm">
+                        <input asp-for="DepartmentName" type="text" placeholder="Название" />
+                        <input asp-for="Address" type="text" placeholder="Адрес" />
+                        <input asp-for="ShortAddress" type="text" placeholder="Короткий Адрес" />
+                        <textarea asp-for="Description" placeholder="Описание"></textarea>
+                        <select id="comptypeId" name="CompTypeId" asp-items="@ViewBag.DepartTypeSelect"></select>
+                        <button type="button" onclick="CreateDepart()">Создать</button>
+                    </form>                                       
+                    <div id="Company_Close_PopUp" onclick="CompClosePopUp()" class="Company-popup-close">&#10006</div>
+                    <p id="CompanyResult-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#CompanyList').load('@Url.Action("DepartmentsListPartialView", "WorkPages")');
+    })
+    function LoadDepartList() {
+        $('#CompanyList').load('@Url.Action("DepartmentsListPartialView", "WorkPages")');
+    }
+</script>

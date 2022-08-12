@@ -1,8 +1,7 @@
-﻿@model IEnumerable<CompaniesViewModel>
+﻿@model IEnumerable<DepartmentsListViewModel>
 
 <table class="Company-table">
     <tr class="Company-table-title">
-        <th>ID</th>
         <th>Название</th>
         <th>Короткий адрес</th>
         <th>Тип подразделения</th>
@@ -13,11 +12,10 @@
     {
 
         <tr>
-            <td>@Html.DisplayFor(modelItem => item.ID)</td>
-            <td>@Html.DisplayFor(modelItem => item.CompanyName)</td>
+            <td>@Html.DisplayFor(modelItem => item.DepartmentName)</td>
             <td>@Html.DisplayFor(modelItem => item.ShortAddress)</td>
-            <td>@Html.DisplayFor(modelItem => item.EnterpriseName)</td>
-            <td><a asp-controller="WorkPages" asp-action="SelectDepartmentPage" asp-route-id="@item.ID" target="_blank">&#9989</a></td>
+            <td>@Html.DisplayFor(modelItem => item.TypeName)</td>
+            <td><a asp-action="" asp-controller="">&#9989</a></td>
         </tr>
     }
 </table>

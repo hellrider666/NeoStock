@@ -39,11 +39,15 @@ namespace DAL.Repositoryes
         {
             return context.clientIdentities.FirstOrDefault(x=>x.ID == Id);
         }
+
         public ClientIdentity GetByString(string login)
         {
-            return context.clientIdentities.Include(y=>y.Role).FirstOrDefault(x=>x.Login == login);
+            return context.clientIdentities.Include(y => y.Role).Where(x => x.Login == login).FirstOrDefault();
         }
-        
+        public ClientIdentity GetByAuthData(string login,string password)
+        {
+            return context.clientIdentities.Include(y => y.Role).Where(x => x.Login == login).Where(y => y.Password == password).FirstOrDefault();
+        }
 
         public void Update(ClientIdentity ClientIdentity)
         {

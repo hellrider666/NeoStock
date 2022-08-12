@@ -34,6 +34,11 @@ namespace DAL.Repositoryes
             return context.DepartmentTypesEntities;
         }
 
+        public DepartmentTypesEntities GetByAuthData(string val_1, string val_2)
+        {
+            throw new NotImplementedException();
+        }
+
         public DepartmentTypesEntities GetByID(int Id)
         {
             return context.DepartmentTypesEntities.Find(Id);

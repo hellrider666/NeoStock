@@ -34,6 +34,11 @@ namespace DAL.Repositoryes
             return context.ProductionEntities;
         }
 
+        public ProductionEntities GetByAuthData(string val_1, string val_2)
+        {
+            throw new NotImplementedException();
+        }
+
         public ProductionEntities GetByID(int Id)
         {
             return context.ProductionEntities.Find(Id);

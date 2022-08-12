@@ -32,6 +32,12 @@ namespace DAL.Repositoryes
         {
             return context.Roles;
         }
+
+        public Roles GetByAuthData(string val_1, string val_2)
+        {
+            throw new NotImplementedException();
+        }
+
         public Roles GetByID(int Id)
         {
             return context.Roles.Find(Id);

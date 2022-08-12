@@ -35,6 +35,11 @@ namespace DAL.Repositoryes
             return context.clientEntities.Include(x=>x.ClientIden);
         }
 
+        public ClientEntities GetByAuthData(string val_1, string val_2)
+        {
+            throw new NotImplementedException();
+        }
+
         public ClientEntities GetByID(int Id)
         {
             return context.clientEntities.Find(Id);
