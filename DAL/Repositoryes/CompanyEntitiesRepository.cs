@@ -44,9 +44,9 @@ namespace DAL.Repositoryes
         {
             return context.CompanyEntities.FirstOrDefault(x => x.ClientID == Id);
         }           
-        public CompanyEntities GetByString(string value)
+        public CompanyEntities GetByString(string Id)
         {
-            throw new NotImplementedException();
+            return context.CompanyEntities.FirstOrDefault(x => x.ID == Convert.ToInt32(Id));
         }
 
         public void Update(CompanyEntities CompanyEntities)

@@ -100,5 +100,17 @@ namespace InventoryControlProject.Controllers
                 return Json(false);
             }
         }
+        public JsonResult CreateDepartment(CreateDepartmentViewModel model, int Id)
+        {
+            var depart = _mapper.Map<CreateDepartmentViewModel, CreateDepartmentDTO>(model);
+            if (departServ.CreateDepartment(depart, Id, CompanyId) == true)
+            {
+                return Json(true);
+            }
+            else
+            {
+                return Json(false);
+            }
+        }
     }
 }

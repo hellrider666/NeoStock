@@ -2,7 +2,7 @@
  
 <link href="~/css/SelectCompanyStyleSheet.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="~/js/CompanyPopUpScript.js"></script>
-<script src="~/js/CreateCompanyScripts.js"></script>
+<script src="~/js/CreateDepartmentScripts.js"></script>
 <div class="Company-main">
     <div class="Company-cont">
         <div class="Company-content" id="CompanyList">
@@ -19,7 +19,7 @@
                         <input asp-for="ShortAddress" type="text" placeholder="Короткий Адрес" />
                         <textarea asp-for="Description" placeholder="Описание"></textarea>
                         <select id="comptypeId" name="CompTypeId" asp-items="@ViewBag.DepartTypeSelect"></select>
-                        <button type="button" onclick="CreateDepart()">Создать</button>
+                        <button type="button" onclick="CreateDepartment()">Создать</button>
                     </form>                                       
                     <div id="Company_Close_PopUp" onclick="CompClosePopUp()" class="Company-popup-close">&#10006</div>
                     <p id="CompanyResult-text"></p>

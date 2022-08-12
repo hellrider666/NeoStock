@@ -1,8 +1,7 @@
 ﻿@model IEnumerable<CompaniesViewModel>
 
 <table class="Company-table">
-    <tr class="Company-table-title">
-        <th>ID</th>
+    <tr class="Company-table-title">       
         <th>Название</th>
         <th>Короткий адрес</th>
         <th>Тип подразделения</th>
@@ -12,8 +11,7 @@
     @foreach (var item in Model)
     {
 
-        <tr>
-            <td>@Html.DisplayFor(modelItem => item.ID)</td>
+        <tr>           
             <td>@Html.DisplayFor(modelItem => item.CompanyName)</td>
             <td>@Html.DisplayFor(modelItem => item.ShortAddress)</td>
             <td>@Html.DisplayFor(modelItem => item.EnterpriseName)</td>

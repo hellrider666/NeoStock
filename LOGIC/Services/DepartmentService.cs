@@ -33,7 +33,20 @@ namespace LOGIC.Services
 
         public bool CreateDepartment(CreateDepartmentDTO departmentDTO, int DepartTypeId, int CompanyId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<CreateDepartmentDTO, DepartmentEntities>()).CreateMapper();
+                var department = mapper.Map<CreateDepartmentDTO, DepartmentEntities>(departmentDTO);
+                department.DepartType = database.DepartTypesEntities.GetByID(DepartTypeId);
+                department.Company = database.CompanyEntities.GetByString(Convert.ToString(CompanyId));
+                database.DepartmentEntities.Create(department);
+                database.Save();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
