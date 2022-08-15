@@ -48,6 +48,7 @@ namespace InventoryControlProject.Controllers
             DepartId = Id;
             return View();
         }
+        [HttpGet]
         public IActionResult ProductionListPartialView()
         {
             IEnumerable<ProductionListDTO> listDTOs = prodServ.GetProductionByDepartmentId(DepartId);

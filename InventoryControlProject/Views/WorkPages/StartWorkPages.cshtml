@@ -1,16 +1,7 @@
-﻿<link href="~/css/WorkPageStyleSheet.css" rel="stylesheet" type="text/css"/>
-<link href="~/css/SelectCompanyStyleSheet.css" rel="stylesheet" type="text/css"/>
+﻿<link href="~/css/WorkPageStyleSheet.css" rel="stylesheet" type="text/css" />
+<link href="~/css/SelectCompanyStyleSheet.css" rel="stylesheet" type="text/css" />
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#work-partial-table').load('@Url.Action("ProductionListPartialView", "WorkPages")');
-    })
-    function LoadCompaniesList() {
-        $('#work-partial-table').load('@Url.Action("ProductionListPartialView", "WorkPages")');
-    }
-</script>
-
-<body class="work-body">
+<div class="work-body">
     <div class="Work-main">
         <div class="work-cont">
             <div class="Work-content">
@@ -45,4 +36,8 @@
             </div>
         </div>
     </div>
-</body>
+
+</div>
+<script src="https://yandex.st/jquery/2.1.1/jquery.min.js"></script>
+<script src="~/js/StartWorkPageScripts.js" type="text/javascript"></script>
+
