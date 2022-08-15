@@ -19,17 +19,21 @@ namespace InventoryControlProject.Controllers
         private readonly ILogger<WorkPagesController> _logger;
         private readonly IMapper _mapper;
         static int CompanyId { get; set; }
+        static int DepartId { get; set; }
 
         IClientService clientServ;
         ICompaniesService compSev;
         IDepartmentsService departServ;
-        public WorkPagesController(ILogger<WorkPagesController> logger, IClientService serv, IMapper mapper, ICompaniesService compSev, IDepartmentsService departServ)
+        IProductionService prodServ;
+
+        public WorkPagesController(ILogger<WorkPagesController> logger, IClientService serv, IMapper mapper, ICompaniesService compSev, IDepartmentsService departServ, IProductionService production)
         {
             _logger = logger;
             clientServ = serv;
             _mapper = mapper;
             this.compSev = compSev;
             this.departServ = departServ;
+            prodServ = production;
         }
         [HttpGet]
         
@@ -39,10 +43,16 @@ namespace InventoryControlProject.Controllers
             var user_ = _mapper.Map<ProfileDTO, ProfileViewModel>(user);
             return Json(user_); 
         }
-        public IActionResult StartWorkPages()
+        public IActionResult StartWorkPages(int Id)
         {
-            
+            DepartId = Id;
             return View();
+        }
+        public IActionResult ProductionListPartialView()
+        {
+            IEnumerable<ProductionListDTO> listDTOs = prodServ.GetProductionByDepartmentId(DepartId);
+            var production = _mapper.Map<IEnumerable<ProductionListDTO>, List<ProductionListViewModel>> (listDTOs);
+            return PartialView(production);
         }
         [HttpGet]
         public IActionResult CompaniesListPartialView()

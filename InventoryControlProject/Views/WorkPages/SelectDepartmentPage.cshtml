@@ -1,6 +1,6 @@
 ﻿@model CreateDepartmentViewModel
  
-<link href="~/css/SelectCompanyStyleSheet.css" rel="stylesheet" type="text/css"/>
+@*<link href="~/css/SelectCompanyStyleSheet.css" rel="stylesheet" type="text/css"/>*@
 <script type="text/javascript" src="~/js/CompanyPopUpScript.js"></script>
 <script src="~/js/CreateDepartmentScripts.js"></script>
 <div class="Company-main">
@@ -31,7 +31,6 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-
         $('#CompanyList').load('@Url.Action("DepartmentsListPartialView", "WorkPages")');
     })
     function LoadDepartList() {

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<ProductionListViewModel>
+
+<table class="Company-table">
+    <tr class="Company-table-title">
+        <th>Название</th>
+        <th>Цена(ед)</th>
+        <th>Кол-во</th>
+        <th>Выбрать</th>
+        @*<th><a href="#" id="company_open_pop_up" onclick="CompOpenPopUp()">Создать компанию</a></th>*@
+    </tr>
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.ProductionName)</td>
+            <td>@Html.DisplayFor(modelItem => item.Price)</td>
+            <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+            <td><a asp-action="" asp-controller="">&#9989</a></td>
+        </tr>
+    }
+</table>

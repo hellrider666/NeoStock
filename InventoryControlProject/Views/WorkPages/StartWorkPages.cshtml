@@ -1,4 +1,15 @@
 ﻿<link href="~/css/WorkPageStyleSheet.css" rel="stylesheet" type="text/css"/>
+<link href="~/css/SelectCompanyStyleSheet.css" rel="stylesheet" type="text/css"/>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#work-partial-table').load('@Url.Action("ProductionListPartialView", "WorkPages")');
+    })
+    function LoadCompaniesList() {
+        $('#work-partial-table').load('@Url.Action("ProductionListPartialView", "WorkPages")');
+    }
+</script>
+
 <body class="work-body">
     <div class="Work-main">
         <div class="work-cont">
@@ -9,16 +20,12 @@
                             <button>Профиль</button>
                             <button>Сотрудники</button>
                             <button>Товары</button>
-                            <button>Подразделения</button>
-                            <button>Компания</button>
                         </div>
                     </div>
                     <div class="work-tool-bar-2">
                         <div class="work-btn-group-1">
                             <button>Добавить товар</button>
                             <button>Добавить сотрудника</button>
-                            <button>Добавить подразделение</button>
-                            <button>Добавить компанию</button>                           
                         </div>
                     </div>
                 </div>

@@ -31,7 +31,7 @@ namespace DAL.Repositoryes
 
         public IEnumerable<ProductionEntities> GetAll()
         {
-            return context.ProductionEntities;
+            return context.ProductionEntities.Include(x=>x.Department);
         }
 
         public ProductionEntities GetByAuthData(string val_1, string val_2)

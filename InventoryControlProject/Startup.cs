@@ -46,6 +46,7 @@ namespace InventoryControlProject
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICompaniesService, CompaniesService>();
             services.AddScoped<IDepartmentsService, DepartmentService>();
+            services.AddScoped<IProductionService, ProductionService>();
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
