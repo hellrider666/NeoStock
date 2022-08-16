@@ -34,7 +34,7 @@ namespace LOGIC.Services
 
         public IEnumerable<ProductionListDTO> GetProductionByDepartmentId(int Id)
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ProductionEntities, ProductionListDTO>().ForMember(x => x.department, y => y.MapFrom(z => z.Department.ID))).CreateMapper();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ProductionEntities, ProductionListDTO>().ForMember(x => x.department, y => y.MapFrom(z => z.Department))).CreateMapper();
             return mapper.Map<IEnumerable<ProductionEntities>, List<ProductionListDTO>>(database.ProductionEntities.GetAll().Where(x => x.Department.ID == Id));
         }
 

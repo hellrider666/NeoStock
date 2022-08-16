@@ -1,21 +1,24 @@
 ﻿@model IEnumerable<ProductionListViewModel>
 
-<table class="Company-table">
+<script type="text/javascript" src=""></script>
+
+<table id="companyTable" class="Company-table">
     <tr class="Company-table-title">
         <th>Название</th>
         <th>Цена(ед)</th>
         <th>Кол-во</th>
+        <th>Общая цена</th>
         <th>Выбрать</th>
         @*<th><a href="#" id="company_open_pop_up" onclick="CompOpenPopUp()">Создать компанию</a></th>*@
     </tr>
     @foreach (var item in Model)
     {
-
         <tr>
-            <td>@Html.DisplayFor(modelItem => item.ProductionName)</td>
-            <td>@Html.DisplayFor(modelItem => item.Price)</td>
-            <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+            <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+            <td id="prodPrice">@Html.DisplayFor(modelItem => item.Price)</td>
+            <td id="prodAmount">@Html.DisplayFor(modelItem => item.Amount)</td>
+            <td id="prodFullPrice">@(item.Amount * item.Price)</td>
             <td><a asp-action="" asp-controller="">&#9989</a></td>
-        </tr>
+        </tr>       
     }
 </table>

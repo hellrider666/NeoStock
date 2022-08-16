@@ -9,7 +9,7 @@ namespace InventoryControlProject.Models
     public class ProductionListViewModel
     {
         public int ID { get; set; }
-        public string ProductionName { get; set; }
+        public string ProductName { get; set; }
         public double Price { get; set; }
         public UInt32 Amount { get; set; }
         public string Description { get; set; }
