@@ -1,14 +1,17 @@
-﻿<div class="create-product-body">
+﻿<link href="~/css/CreateProductStyle.css" rel="stylesheet" type="text/css" />
+
+<div class="create-product-body">
     <div class="create-product-cont">
         <div class="create-body-content">
             <form class="create-product-form" id="createProdForm">
-                <input type="text" placeholder="Наименование"/>
-                <input type="text" placeholder="Цена"/>
-                <input type="text" placeholder="Кол-во"/>
-                <input type="text" placeholder="Производитель"/>
-                <input type="text" placeholder="Проивзодитель"/>
-                <input type="button" value="Добавить"/>
+                <input class="productInput" type="text" placeholder="Наименование"/>
+                <input class="productInput" type="text" placeholder="Цена"/>
+                <input class="productInput" type="text" placeholder="Кол-во"/>
+                <input class="productInput" type="text" placeholder="Производитель"/>
+                <input class="productInput" type="text" placeholder="Проивзодитель"/>
+                <input class="productButton" type="button" value="Добавить"/>
             </form>
+            <p id="productMessage"></p>
         </div>
     </div>
 </div>

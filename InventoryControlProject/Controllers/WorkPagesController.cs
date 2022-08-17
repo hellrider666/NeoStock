@@ -63,6 +63,11 @@ namespace InventoryControlProject.Controllers
             return PartialView(Companies);
         }
         [HttpGet]
+        public IActionResult CreateProductPartialView()
+        {
+            return PartialView();
+        }
+        [HttpGet]
         public IActionResult DepartmentsListPartialView()
         {
             IEnumerable<DepartmentsListDTO> departList = departServ.GetAllDepartmentsByCompanyID(CompanyId);
