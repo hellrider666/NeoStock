@@ -1,6 +1,6 @@
 ﻿.create-product-body {
-    width:30%;
-    height:30%;
+    width:100%;
+    height:100%;
     background-color:red;
 }
 .create-product-cont{
@@ -12,12 +12,12 @@
     height:100%;
 }
 .productInput {
-    margin-left: auto;
-    margin-right: auto;
+    width:70%;
+    margin
 }
 .productButton {
     margin-left: auto;
     margin-right: auto;
-    width:5em;
+    width:7em;
     
 }
