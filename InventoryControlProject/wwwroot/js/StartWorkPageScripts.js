@@ -1,8 +1,8 @@
 ﻿
 $(document).ready(function () {
-    LoadCompaniesList();
+    LoadProductList();
 })
-function LoadCompaniesList() {
+function LoadProductList() {
     $.ajax({
         type: 'GET',
         url: '/WorkPages/ProductionListPartialView',
@@ -17,6 +17,7 @@ function LoadCompaniesList() {
         },
     });  
 }
+
 function OpenProdCreateView() {
     $.ajax({
         type: 'GET',

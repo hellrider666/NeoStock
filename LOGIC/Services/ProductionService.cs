@@ -22,9 +22,22 @@ namespace LOGIC.Services
             throw new NotImplementedException();
         }
 
-        public bool CreateProduction(ProductionListDTO production)
+        public bool CreateProduction(ProductionListDTO production, int DepartId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ProductionListDTO, ProductionEntities>()).CreateMapper();
+                var product = mapper.Map<ProductionListDTO, ProductionEntities>(production);
+                var depart = database.DepartmentEntities.GetByID(DepartId);
+                product.Department = depart;
+                database.ProductionEntities.Create(product);
+                database.Save();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool DeleteProductionById(int Id)

@@ -1,17 +1,19 @@
-﻿<link href="~/css/CreateProductStyle.css" rel="stylesheet" type="text/css" />
+﻿@model InventoryControlProject.Models.ProductionListViewModel
+<script type="text/javascript" src="~/js/CreateProductScript.js"></script>
+<link href="~/css/CreateProductStyle.css" rel="stylesheet" type="text/css" />
 
 <div class="create-product-body">
     <div class="create-product-cont">
         <div class="create-body-content">
             <form class="create-product-form" id="createProdForm">
-                <input class="productInput" type="text" placeholder="Наименование"/>
-                <input class="productInput" type="text" placeholder="Цена"/>
-                <input class="productInput" type="text" placeholder="Кол-во"/>
-                <input class="productInput" type="text" placeholder="Производитель"/>
-                <input class="productInput" type="text" placeholder="Проивзодитель"/>
-                <input class="productButton" type="button" value="Добавить"/>
+                <input asp-for="ProductName" class="productInput" type="text" placeholder="Наименование"/>
+                <input asp-for="Price" class="productInput" type="text" placeholder="Цена"/>
+                <input asp-for="Amount" class="productInput" type="text" placeholder="Кол-во"/>
+                <input asp-for="Description" class="productInput" type="text" placeholder="Описание"/>
+                <input asp-for="Manufacture" class="productInput" type="text" placeholder="Проивзодитель"/>
+                <input class="productInput" type="button" onclick="CreateProduct()" value="Добавить"/>
             </form>
-            <p id="productMessage"></p>
+            <p id="CompanyResult-text"></p>
         </div>
     </div>
 </div>

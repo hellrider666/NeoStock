@@ -67,6 +67,7 @@ namespace InventoryControlProject.Controllers
         {
             return PartialView();
         }
+        
         [HttpGet]
         public IActionResult DepartmentsListPartialView()
         {
@@ -102,6 +103,18 @@ namespace InventoryControlProject.Controllers
             
             ViewBag.CompTypesSelect = selectListItems;
             return View();
+        }
+        [HttpPost]
+        public JsonResult CreateProduct(ProductionListViewModel product)
+        {
+            var product_ = _mapper.Map<ProductionListViewModel, ProductionListDTO>(product);
+            product_.InsertDate = DateTime.Now;
+            if(prodServ.CreateProduction(product_, DepartId) == true)
+            {
+                return Json(true);
+            }
+
+            return Json(false);
         }
         [HttpPost]
         public JsonResult CreateCompany(CreateCompanyViewModel model, int Id)

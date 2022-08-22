@@ -9,7 +9,7 @@ namespace LOGIC.Interfaces
     {
         IEnumerable<ProductionListDTO> GetProductionByDepartmentId(int Id);
         ProductionListDTO GetProductionById(int Id);
-        bool CreateProduction(ProductionListDTO production);
+        bool CreateProduction(ProductionListDTO production, int DepartId);
         bool DeleteProductionById(int Id);
         bool ChangeProduction(ProductionListDTO production);
     }

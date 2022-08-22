@@ -10,14 +10,14 @@
 .create-body-content{
     width:100%;
     height:100%;
+    text-align:center;
 }
 .productInput {
+    padding:1em;
     width:70%;
-    margin
+    margin:0;
 }
 .productButton {
-    margin-left: auto;
-    margin-right: auto;
-    width:7em;
-    
+    margin: 0;
+   
 }
